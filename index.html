@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivani Uppala - Business Analyst & Data Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --accent: #9d4edd;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --gradient-1: linear-gradient(135deg, #00d4ff, #9d4edd);
+            --gradient-2: linear-gradient(135deg, #9d4edd, #ff006e);
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            animation: fadeInDown 0.8s ease 0.2s both;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Character Container */
+        .character-container {
+            position: fixed;
+            right: 2rem;
+            top: 6rem;
+            z-index: 500;
+            width: 150px;
+            height: 200px;
+            animation: slideInRight 0.8s ease 0.3s both;
+        }
+
+        .character {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(0, 212, 255, 0.1));
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2), inset 0 0 30px rgba(157, 78, 221, 0.1);
+        }
+
+        .char-head {
+            position: relative;
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(135deg, #d4a373, #c9956f);
+            border-radius: 50% 50% 45% 45%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .eyes-container {
+            position: absolute;
+            width: 50px;
+            height: 35px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .eye {
+            width: 15px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .pupil {
+            position: absolute;
+            width: 8px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+            top: 5px;
+            left: 3px;
+            transition: all 0.05s ease-out;
+        }
+
+        .mouth {
+            position: absolute;
+            bottom: 12px;
+            width: 20px;
+            height: 8px;
+            border: 2px solid #333;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .char-hair {
+            position: absolute;
+            top: -5px;
+            width: 90px;
+            height: 40px;
+            background: linear-gradient(135deg, #2c1810, #3d2817);
+            border-radius: 50% 50% 40% 40%;
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 0;
+            padding-top: 70px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 1) 0%, rgba(26, 31, 58, 0.8) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(157, 78, 221, 0.1) 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .hero .title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            animation: slideInUp 0.8s ease 0.2s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 0.8s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn.primary {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: white;
+        }
+
+        .btn.primary:hover {
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+            border-left-color: var(--accent);
+        }
+
+        .stat-box .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-box .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Experience Section */
+        .experience-list {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .experience-item {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(157, 78, 221, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .exp-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .exp-company {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .exp-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .exp-bullets li {
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .exp-bullets li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border-top: 3px solid var(--primary);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .skill-category h4 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-right: 0.8rem;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: var(--dark-bg);
+            transform: scale(1.1);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .project-header {
+            background: var(--gradient-1);
+            padding: 2rem;
+            color: white;
+        }
+
+        .project-header h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-body p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background: rgba(157, 78, 221, 0.2);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(157, 78, 221, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            background: var(--card-bg);
+            border-radius: 50px;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .contact-link:hover {
+            background: var(--primary);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotateZ(2deg);
+            }
+            50% {
+                transform: translateY(30px) rotateZ(-2deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(157, 78, 221, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(157, 78, 221, 0.6);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes glitch {
+            0% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: translate(0);
+            }
+            20% {
+                clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 80%);
+                transform: translate(2px, -2px);
+            }
+            60% {
+                clip-path: polygon(0 50%, 100% 0, 100% 50%, 0 100%);
+                transform: translate(-2px, 0);
+            }
+            80% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: translate(2px, 2px);
+            }
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: translate(0);
+            }
+        }
+
+        @keyframes rotateBg {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+</parameter>
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .character-container {
+                position: relative;
+                right: auto;
+                top: auto;
+                width: 120px;
+                height: 160px;
+                margin: 2rem auto;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .title {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .achievement {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(157, 78, 221, 0.1));
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .achievement:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .achievement-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Scroll Animation */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            background: rgba(10, 14, 39, 0.8);
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Shivani</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Character -->
+    <div class="character-container">
+        <div class="character">
+            <div class="char-head">
+                <div class="char-hair"></div>
+                <div class="eyes-container">
+                    <div class="eye">
+                        <div class="pupil" id="pupil1"></div>
+                    </div>
+                    <div class="eye">
+                        <div class="pupil" id="pupil2"></div>
+                    </div>
+                </div>
+                <div class="mouth" id="mouth"></div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Shivani Uppala</h1>
+                <p class="title">Data-Driven Business Analyst & Enterprise Solutions Architect</p>
+                <p class="subtitle">Transforming complex business requirements into scalable analytics solutions across logistics, manufacturing, and financial services. Specialized in Power BI, Cloud Platforms, and Process Optimization.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn primary">View Projects</a>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Professional Background</h3>
+                    <p>With 4+ years of experience, I bridge the gap between business requirements and enterprise data solutions. I've worked across diverse industries including logistics, manufacturing, and financial services, delivering end-to-end analytics products that drive measurable business impact.</p>
+                    <p>My expertise spans Power BI, SQL, cloud platforms (Azure Synapse, AWS Redshift, Databricks), and process improvement methodologies like Lean Six Sigma. I'm passionate about creating data-driven solutions that optimize operations and enable informed decision-making.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="number">4+</div>
+                        <div class="label">Years Experience</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">500K+</div>
+                        <div class="label">Daily Transactions Analyzed</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">35%</div>
+                        <div class="label">Data Latency Reduced</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">99.2%</div>
+                        <div class="label">System Uptime Achieved</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">Honeywell</div>
+                            <div class="exp-title">Business Analyst</div>
+                        </div>
+                        <div class="exp-date">Nov 2024 - Present</div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Engineered SAP SuccessFactors Employee Central system with 12+ configuration updates achieving 99.2% uptime</li>
+                        <li>Designed Power BI dashboards integrated with Azure SQL and PostgreSQL for real-time workforce analytics</li>
+                        <li>Accelerated CI/CD pipeline deployment through Azure DevOps, improving deployment frequency by 40%</li>
+                        <li>Facilitated requirements sessions with 15+ stakeholders, aligning system enhancements with HR and compliance objectives</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">Blue Dart Express</div>
+                            <div class="exp-title">Business Analyst</div>
+                        </div>
+                        <div class="exp-date">Jan 2021 - Dec 2022</div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Engineered interactive dashboards for 500K+ daily shipments enabling executives to monitor delays and fleet utilization</li>
+                        <li>Integrated AWS Redshift and Google BigQuery pipelines, reducing data latency by 35%</li>
+                        <li>Applied Lean Six Sigma (DMAIC) methodology to reduce shipment delays by 20%</li>
+                        <li>Maintained 95% sprint velocity consistency through artifact management in Jira and Confluence</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">TatvaSoft</div>
+                            <div class="exp-title">Business Analyst</div>
+                        </div>
+                        <div class="exp-date">Mar 2020 - Dec 2020</div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Authored comprehensive BRD/FRD documents for financial workflow system with 40+ functional requirements</li>
+                        <li>Designed BPMN models and SQL-based reporting for loan performance monitoring across 8 product lines</li>
+                        <li>Reduced loan processing turnaround time by 30% through root cause analysis</li>
+                        <li>Integrated system data with Microsoft Dynamics 365 and SAP for real-time financial reporting</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Business Analysis</h4>
+                    <span class="skill-tag">BRD/FRD Authoring</span>
+                    <span class="skill-tag">Requirements Gathering</span>
+                    <span class="skill-tag">BPMN Modeling</span>
+                    <span class="skill-tag">User Story Creation</span>
+                    <span class="skill-tag">Gap Analysis</span>
+                </div>
+                <div class="skill-category">
+                    <h4>Data Analytics & BI</h4>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">SQL (PostgreSQL, MySQL, SQL Server)</span>
+                    <span class="skill-tag">DAX</span>
+                    <span class="skill-tag">Data Modeling</span>
+                </div>
+                <div class="skill-category">
+                    <h4>Cloud & Data Platforms</h4>
+                    <span class="skill-tag">Azure Synapse</span>
+                    <span class="skill-tag">AWS Redshift</span>
+                    <span class="skill-tag">Databricks</span>
+                    <span class="skill-tag">Snowflake</span>
+                    <span class="skill-tag">Google BigQuery</span>
+                </div>
+                <div class="skill-category">
+                    <h4>Process Improvement</h4>
+                    <span class="skill-tag">Lean Six Sigma</span>
+                    <span class="skill-tag">DMAIC</span>
+                    <span class="skill-tag">Kaizen</span>
+                    <span class="skill-tag">Root Cause Analysis</span>
+                </div>
+                <div class="skill-category">
+                    <h4>Project Management</h4>
+                    <span class="skill-tag">Agile/Scrum</span>
+                    <span class="skill-tag">Jira</span>
+                    <span class="skill-tag">Confluence</span>
+                    <span class="skill-tag">Waterfall</span>
+                </div>
+                <div class="skill-category">
+                    <h4>Enterprise Systems</h4>
+                    <span class="skill-tag">SAP SuccessFactors</span>
+                    <span class="skill-tag">Dynamics 365</span>
+                    <span class="skill-tag">Salesforce CRM</span>
+                    <span class="skill-tag">Azure DevOps</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <h2 class="section-title">Notable Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h4>Fraud Detection in Financial Transactions</h4>
+                    </div>
+                    <div class="project-body">
+                        <p>Engineered anomaly detection models using Python analyzing 2M+ transaction records, identifying 98% fraud patterns with high precision.</p>
+                        <p>Integrated automated fraud alert workflows with Salesforce and Power Automate, reducing detection response time from 2 days to 4 hours.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Anomaly Detection</span>
+                            <span class="project-tag">Salesforce</span>
+                            <span class="project-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h4>Supplier Onboarding Digital Tracker</h4>
+                    </div>
+                    <div class="project-body">
+                        <p>Developed real-time SLA tracking dashboard using Power BI and Dynamics 365, reducing onboarding cycle time by 35%.</p>
+                        <p>Automated escalation alerts and compliance reporting for 100+ suppliers with complete audit trail and real-time monitoring.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Power BI</span>
+                            <span class="project-tag">Dynamics 365</span>
+                            <span class="project-tag">Automation</span>
+                            <span class="project-tag">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h4>Enterprise Analytics Platform</h4>
+                    </div>
+                    <div class="project-body">
+                        <p>Architected end-to-end analytics platform integrating multiple data sources handling 500K+ daily transactions with multi-cloud deployment.</p>
+                        <p>Implemented CI/CD pipelines and automated testing, improving deployment frequency by 40% while maintaining data quality standards.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Azure</span>
+                            <span class="project-tag">AWS</span>
+                            <span class="project-tag">CI/CD</span>
+                            <span class="project-tag">Data Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="achievements">
+            <h2 class="section-title">Key Achievements & Business Impact</h2>
+            <div class="achievements-grid">
+                <div class="achievement">
+                    <div class="achievement-text"><strong>35%</strong> Data Latency Reduction through cloud optimization</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-text"><strong>40%</strong> Query Performance Improvement via data modeling</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-text"><strong>20%</strong> Shipment Delay Reduction using Lean Six Sigma</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-text"><strong>99.2%</strong> System Uptime maintained across HR systems</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-text"><strong>30%</strong> Loan Processing Time Reduction through automation</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-text"><strong>98%</strong> Fraud Pattern Identification Accuracy</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-text"><strong>2 days → 4 hours</strong> Fraud Response Time (80% improvement)</div>
+                </div>
+                <div class="achievement">
+                    <div class="achievement-text"><strong>500K+</strong> Daily Transactions Monitored Real-time</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem;">Let's discuss how I can help drive your business transformation with data-driven solutions.</p>
+                <div class="contact-links">
+                    <a href="mailto:Shivaniuppala034@gmail.com" class="contact-link">
+                        <span>✉</span>
+                        <span>Email</span>
+                    </a>
+                    <a href="tel:+14752873249" class="contact-link">
+                        <span>☎</span>
+                        <span>Call</span>
+                    </a>
+                    <a href="http://www.linkedin.com/in/shivani-uppala-8128862b7" target="_blank" class="contact-link">
+                        <span>in</span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="#" class="contact-link">
+                        <span>📍</span>
+                        <span>Northridge, CA</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Shivani Uppala. All rights reserved. | Crafted with precision and passion.</p>
+    </footer>
+
+    <script>
+        // Eye Following Cursor
+        const pupil1 = document.getElementById('pupil1');
+        const pupil2 = document.getElementById('pupil2');
+        const mouth = document.getElementById('mouth');
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            // Get eye positions
+            const eyes = document.querySelectorAll('.eye');
+            
+            eyes.forEach((eye, index) => {
+                const pupil = index === 0 ? pupil1 : pupil2;
+                const eyeRect = eye.getBoundingClientRect();
+                const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+                const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+                const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+                const distance = 4;
+
+                const pupilX = Math.cos(angle) * distance;
+                const pupilY = Math.sin(angle) * distance;
+
+                pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+            });
+
+            // Mouth animation based on distance
+            const charRect = document.querySelector('.character').getBoundingClientRect();
+            const charCenterX = charRect.left + charRect.width / 2;
+            const charCenterY = charRect.top + charRect.height / 2;
+
+            const distToMouse = Math.hypot(mouseX - charCenterX, mouseY - charCenterY);
+            if (distToMouse < 300) {
+                mouth.style.height = '12px';
+            } else {
+                mouth.style.height = '8px';
+            }
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.experience-item, .skill-category, .project-card, .achievement').forEach(el => {
+            el.classList.add('scroll-fade');
+            observer.observe(el);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Character Blink Animation
+        setInterval(() => {
+            const eyes = document.querySelectorAll('.eye');
+            eyes.forEach(eye => {
+                eye.style.height = '3px';
+                setTimeout(() => {
+                    eye.style.height = '20px';
+                }, 150);
+            });
+        }, 3000);
+    </script>
+</body>
+</html>
